@@ -3,14 +3,8 @@ import ReactDOM from 'react-dom';
 
 function Button(props) {
 
-
-  //const handleClick = () => setCounter(counter*2);
-  //use regular function
-  //return <button onClick={logRandom}>{counter}</button>
-  //using arrow function
-  //return <button onClick={() => alert(Math.random())}> {counter} </button>;
-  //return <button onClick={() => setCounter(counter+1)}> {counter} </button>;
-  return <button onClick={props.handlClick}> Multiply by 2 </button>;
+  const handleClick = () => props.handleClick(props.increment);
+  return <button onClick={handleClick}> Add + {props.increment}</button>;
 }
 
 function Display(props) {
@@ -22,10 +16,12 @@ function Display(props) {
 function App() {
 
   const [counter, setCounter] = useState(5);
-  const handleClick = () => setCounter(counter*2);
+  const handleClick = (val) => setCounter(counter+val);
   return (
     <div>
-      <Button handlClick={handleClick}/>
+      <Button handleClick={handleClick}  increment={1}/>
+      <Button handleClick={handleClick}  increment={2}/>
+      <Button handleClick={handleClick}  increment={3}/>
       <Display counter={counter}/>
     </div>
   )
